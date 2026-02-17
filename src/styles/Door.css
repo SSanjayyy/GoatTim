@@ -1,0 +1,782 @@
+/* Vaporwave Door Landing Page */
+
+.door-page {
+  min-height: 100vh;
+  background-color: #090014;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating Sun Background */
+.floating-sun {
+  position: fixed;
+  top: -200px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at center, rgba(255, 153, 0, 0.4), rgba(255, 0, 255, 0.3), transparent);
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Perspective Grid Background */
+.perspective-grid {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background-image: 
+    linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: perspective(500px) rotateX(70deg) translateY(200px) scaleY(2);
+  transform-origin: bottom center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Main Wrapper */
+.door-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Terminal Header */
+.terminal-header {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #00FFFF;
+  border-bottom: none;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+.window-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #00FFFF;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-magenta {
+  background-color: #FF00FF;
+  box-shadow: 0 0 10px #FF00FF;
+}
+
+.dot-cyan {
+  background-color: #00FFFF;
+  box-shadow: 0 0 10px #00FFFF;
+}
+
+.dot-orange {
+  background-color: #FF9900;
+  box-shadow: 0 0 10px #FF9900;
+}
+
+.title-text {
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+
+/* Door Section */
+.door-section {
+  width: 100%;
+  height: 450px;
+  perspective: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  border-left: 2px solid #FF00FF;
+  border-right: 2px solid #00FFFF;
+  border-bottom: 2px solid #FF9900;
+  box-shadow: 
+    0 0 30px rgba(255, 0, 255, 0.2),
+    inset 0 0 30px rgba(0, 255, 255, 0.1);
+  position: relative;
+}
+
+.door-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, #FF9900, #FF00FF, #00FFFF);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+/* Outer Door Frame and Casing */
+.door-outer-frame {
+  position: relative;
+  width: 340px;
+  padding: 20px;
+  background: linear-gradient(135deg, #3d2456 0%, #2d1b4e 50%, #3d2456 100%);
+  border: 3px solid #FFD700;
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.4),
+    inset 0 0 20px rgba(0, 0, 0, 0.6),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.8),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Frame Casing */
+.frame-casing {
+  position: absolute;
+  background: linear-gradient(to bottom, #4d3466, #2d1b4e);
+  z-index: 5;
+}
+
+.frame-casing .frame-panel {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 4px,
+    rgba(255, 215, 0, 0.08) 4px,
+    rgba(255, 215, 0, 0.08) 8px
+  );
+  height: 100%;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.frame-left {
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  border-right: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.frame-top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.frame-right {
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  border-left: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+/* Door Frame */
+.door-frame {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  border: 3px solid #FF00FF;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+  box-shadow: 
+    inset 0 0 30px rgba(255, 0, 255, 0.2),
+    inset 0 0 60px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(255, 0, 255, 0.3);
+}
+
+/* Door */
+.door {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  display: flex;
+  overflow: hidden;
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Door Panels (Left & Right) */
+.door-left,
+.door-right {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a0a2e 0%, #0f0520 50%, #1a0a2e 100%);
+  transform-style: preserve-3d;
+  overflow: hidden;
+  position: relative;
+  border-right: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+.door-left {
+  border-left: none;
+}
+
+.door-right {
+  border-right: none;
+  border-left: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+.door.open {
+  transform: rotateY(100deg);
+}
+
+/* Door Panel Container */
+.door-panel-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Individual Panels */
+.door-panel {
+  flex: 1;
+  background: linear-gradient(to right, #2d1b4e 0%, #1a0a2e 25%, #3d2456 50%, #1a0a2e 75%, #2d1b4e 100%);
+  border: 2px solid rgba(255, 0, 255, 0.2);
+  margin: 4px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 
+    inset 0 0 8px rgba(0, 0, 0, 0.8),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.05),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.panel-inner {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(255, 0, 255, 0.15);
+  pointer-events: none;
+}
+
+.door-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(90deg, transparent 0px, transparent 3px, rgba(0, 255, 255, 0.06) 3px, rgba(0, 255, 255, 0.06) 6px),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(255, 0, 255, 0.04) 2px, rgba(255, 0, 255, 0.04) 4px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.door-panel-top {
+  border-color: rgba(0, 255, 255, 0.3);
+}
+
+.door-panel-middle {
+  border-color: rgba(255, 0, 255, 0.25);
+}
+
+.door-panel-bottom {
+  border-color: rgba(255, 0, 255, 0.2);
+}
+
+.panel-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.1), transparent);
+  animation: panel-pulse 4s ease-in-out infinite;
+}
+
+@keyframes panel-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Hinges */
+.hinge {
+  position: absolute;
+  left: -12px;
+  width: 18px;
+  height: 40px;
+  background: linear-gradient(to right, #FFD700, #FFA500, #FFD700);
+  border: 2px solid #FFD700;
+  border-radius: 4px;
+  box-shadow: 
+    0 0 20px #FFD700,
+    0 0 40px rgba(255, 215, 0, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  z-index: 20;
+}
+
+.hinge::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at 35% 35%, #FFED4E, #FFD700, #FFA500);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 15px #FFD700,
+    inset -1px -1px 2px rgba(0, 0, 0, 0.4),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.hinge::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #FFED4E, #FFD700);
+  border-radius: 50%;
+  box-shadow: 0 0 10px #FFD700;
+}
+
+.hinge-top {
+  top: 15px;
+}
+
+.hinge-middle {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hinge-bottom {
+  bottom: 15px;
+}
+
+/* Door Knob Assembly */
+.door-knob-assembly {
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.door-knob {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 30% 30%, #FFED4E, #FFD700, #FFA500, #FF8800);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 25px #FFD700,
+    0 0 50px rgba(255, 215, 0, 0.6),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.25);
+  border: 3px solid #FFD700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.door-knob:hover {
+  box-shadow: 
+    0 0 40px #FFD700,
+    0 0 80px rgba(255, 215, 0, 0.8),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.door.open .door-knob {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.knob-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.4), transparent);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.knob-inner::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Keyhole */
+.keyhole {
+  width: 8px;
+  height: 14px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 0 4px rgba(0, 0, 0, 1),
+    0 0 10px rgba(0, 0, 0, 0.8),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+/* Door Light Glow */
+.door-light {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.05), rgba(0, 255, 255, 0.15));
+  border-radius: 50%;
+  animation: door-light-pulse 2s ease-in-out infinite;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Door Threshold/Sill */
+.door-threshold {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 12px;
+  background: linear-gradient(to bottom, #FFD700, #FFA500);
+  border: 2px solid #FFD700;
+  border-top: none;
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.door-threshold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 4px,
+    rgba(0, 0, 0, 0.1) 4px,
+    rgba(0, 0, 0, 0.1) 8px
+  );
+  border-radius: 0 0 2px 2px;
+}
+
+@keyframes door-light-pulse {
+  0%, 100% { 
+    opacity: 0.3;
+  }
+  50% { 
+    opacity: 0.8;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .door-frame {
+    width: 260px;
+    height: 350px;
+  }
+}
+
+/* Question Container */
+.question-container {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #00FFFF;
+  border-top: none;
+  padding: 1.5rem;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.2),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.question-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #FF00FF;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+
+.question-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: #00FFFF;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 2px solid #FF00FF;
+  padding-bottom: 0.5rem;
+}
+
+.input-prefix {
+  font-family: 'Share Tech Mono', monospace;
+  color: #FF00FF;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #00FFFF;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  outline: none;
+  padding: 0.25rem 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.terminal-input::placeholder {
+  color: #FF00FF;
+  opacity: 0.5;
+}
+
+.terminal-input:focus {
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6) inset;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+.terminal-input.error {
+  color: #FF0000;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+.unlock-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(to right, #FF00FF, #00FFFF);
+  color: #000;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 2px solid #00FFFF;
+  cursor: pointer;
+  transition: all 0.2s ease-linear;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  transform: skewX(-10deg);
+}
+
+.unlock-button:hover:not(:disabled) {
+  transform: skewX(0deg) scale(1.05);
+  box-shadow: 
+    0 0 40px rgba(0, 255, 255, 0.8),
+    inset 0 0 30px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(to right, #00FFFF, #FF00FF);
+}
+
+.unlock-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Status Boxes */
+.error-box {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid #FF0000;
+  border-left: 3px solid #FF0000;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.error-prefix {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #FF0000;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+.error-message {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  color: #FF0000;
+  margin: 0.5rem 0 0 0;
+}
+
+.success-box {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00FF00;
+  border-left: 3px solid #00FF00;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  animation: success-pulse 0.6s ease-out;
+}
+
+@keyframes success-pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 255, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+  }
+}
+
+.success-prefix {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #00FF00;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+}
+
+.success-message {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  color: #00FF00;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .door-page {
+    padding: 1rem;
+  }
+
+  .door-wrapper {
+    max-width: 100%;
+  }
+
+  .door-section {
+    min-height: 350px;
+  }
+
+  .door {
+    width: 240px;
+    height: 320px;
+  }
+
+  .question-text {
+    font-size: 1.1rem;
+  }
+
+  .floating-sun {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .door-page {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .terminal-header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .window-title {
+    font-size: 0.7rem;
+  }
+
+  .door-section {
+    min-height: 280px;
+  }
+
+  .door {
+    width: 180px;
+    height: 240px;
+  }
+
+  .door-panel {
+    font-size: 1.2rem;
+  }
+
+  .question-container {
+    padding: 1rem;
+  }
+
+  .question-text {
+    font-size: 0.95rem;
+  }
+
+  .unlock-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .floating-sun {
+    width: 300px;
+    height: 300px;
+  }
+}
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}

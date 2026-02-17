@@ -1,0 +1,147 @@
+/* Vaporwave Design System Global Styles */
+
+:root {
+  --void: #090014;
+  --chrome: #E0E0E0;
+  --neon-magenta: #FF00FF;
+  --neon-cyan: #00FFFF;
+  --neon-orange: #FF9900;
+  --border-dark: #2D1B4E;
+  --glass: rgba(26, 16, 60, 0.8);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Share Tech Mono', monospace;
+  background-color: var(--void);
+  color: var(--chrome);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Global CRT Scanlines Overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(18, 16, 20, 0) 0px,
+    rgba(18, 16, 20, 0.15) 1px,
+    rgba(18, 16, 20, 0) 2px
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Chromatic Aberration Overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03) 0%,
+    rgba(0, 255, 0, 0.02) 50%,
+    rgba(0, 0, 255, 0.03) 100%
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+p {
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+button {
+  font-family: 'Share Tech Mono', monospace;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease-linear;
+}
+
+input, textarea {
+  font-family: 'Share Tech Mono', monospace;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--neon-cyan);
+  border: none;
+}
+
+/* Gradient Text Utility */
+.gradient-text {
+  background: linear-gradient(to right, #FF9900, #FF00FF, #00FFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+}
+
+/* Glow Effects */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.4), inset 0 0 20px rgba(255, 0, 255, 0.1);
+}
+
+.text-glow {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
