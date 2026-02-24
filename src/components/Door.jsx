@@ -1,198 +1,243 @@
-import { useState, useEffect } from 'react';
-import '../styles/Door.css';
+import { useMemo, useState } from 'react'
+import {
+  SvgFilterDefs,
+  ParallaxController,
+  FirstLoadIntro,
+  FallingLeaves,
+  FloatingMotes,
+  PollenParticles,
+  FloatingLanterns,
+  IvyCornerFrame,
+  WindTrails,
+  BirdSilhouettes,
+  BotanicalCorners,
+  WildflowerSprigs,
+  VineDivider,
+  SignpostDivider,
+  MouseVineTrail,
+  AnimatedUnderline,
+  HandDrawnBorder,
+  MonogramBadge,
+  WatercolorBlob,
+  ArchedFrame
+} from './DecorativeElements'
+import '../styles/Door.css'
 
-const QUESTIONS = [
-  {
-    question: "What is Tim's favorite way to spend a Friday afternoon?",
-    correctAnswers: ['Chill', 'relaxing', 'chilling', 'relax'],
-    hint: "He's super chill!"
-  },
-  {
-    question: "Tim is going to a new job. What are we saying goodbye to?",
-    correctAnswers: ['Tim', 'boss', 'colleague', 'coworker'],
-    hint: "Think about who's leaving..."
-  }
-];
+const RA_NAMES = [
+  'Zach',
+  'Gavin',
+  'Jaylin',
+  'Adam',
+  'Nia',
+  'David',
+  'Jes',
+  'Peyton',
+  'Mbah',
+  'Daniel',
+  'Nari',
+  'Tommy',
+  'Sanjay',
+  'Julian',
+  'AJ'
+]
+
+const SAMPLE_QUIZ_QUESTIONS = RA_NAMES.map((name, index) => ({
+  question: `Sample inside-joke Q${index + 1}: Which RA is this question about?`,
+  correctAnswers: [name.toLowerCase()],
+  hint: `Sample placeholder for ${name}'s inside joke.`
+}))
+
+const FINAL_QUESTION = {
+  question: "Final question: Who's the GOAT of Howlumns?",
+  correctAnswers: ['tim'],
+  hint: "Starts with T."
+}
+
+const QUESTIONS = [...SAMPLE_QUIZ_QUESTIONS, FINAL_QUESTION]
 
 export default function Door({ onCorrectAnswer }) {
-  const [answer, setAnswer] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-  const [showError, setShowError] = useState(false);
-  const [currentQuestion, setCurrentQuestion] = useState(null);
+  const [answer, setAnswer] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
+  const [showBurst, setShowBurst] = useState(false)
+  const [showError, setShowError] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Pick a random question on mount
-  useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * QUESTIONS.length);
-    setCurrentQuestion(QUESTIONS[randomIndex]);
-  }, []);
-
-  if (!currentQuestion) return null;
+  const currentQuestion = QUESTIONS[currentIndex]
+  const totalQuestions = QUESTIONS.length
+  const progressPercent = useMemo(
+    () => ((currentIndex + 1) / totalQuestions) * 100,
+    [currentIndex, totalQuestions]
+  )
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const normalizedAnswer = answer.toLowerCase().trim();
-    
+    e.preventDefault()
+    const normalizedAnswer = answer.toLowerCase().trim()
+
     if (currentQuestion.correctAnswers.includes(normalizedAnswer)) {
-      setShowError(false);
-      setIsOpen(true);
-      setTimeout(() => {
-        onCorrectAnswer();
-      }, 2000);
+      setShowError(false)
+
+      const isLastQuestion = currentIndex === totalQuestions - 1
+      if (isLastQuestion) {
+        setShowBurst(true)
+        setIsOpen(true)
+        setTimeout(() => {
+          setShowBurst(false)
+        }, 1500)
+        setTimeout(() => {
+          onCorrectAnswer()
+        }, 2600)
+      } else {
+        setCurrentIndex((prev) => prev + 1)
+      }
+
+      setAnswer('')
     } else {
-      setShowError(true);
-      setAnswer('');
+      setShowError(true)
+      setAnswer('')
     }
-  };
+  }
+
+  const handleSkipQuiz = () => {
+    if (isOpen) return
+    setShowError(false)
+    setIsOpen(true)
+    setTimeout(() => {
+      onCorrectAnswer()
+    }, 1200)
+  }
 
   return (
     <div className="door-page">
-      {/* Floating Sun Background */}
-      <div className="floating-sun"></div>
+      <SvgFilterDefs />
+      <FirstLoadIntro />
+      <ParallaxController />
+      <FallingLeaves />
+      <MouseVineTrail />
+      <FloatingMotes />
+      <PollenParticles />
+      <FloatingLanterns />
+      <IvyCornerFrame />
+      <WindTrails />
+      <BirdSilhouettes />
+      <BotanicalCorners />
+      <WildflowerSprigs />
+      <WatercolorBlob className="door-blob-left" />
+      <WatercolorBlob className="door-blob-right" />
 
-      {/* Main Container */}
       <div className="door-wrapper">
-        {/* Terminal Window Header */}
-        <div className="terminal-header">
-          <div className="window-title">
-            <span className="window-dot dot-magenta"></span>
-            <span className="window-dot dot-cyan"></span>
-            <span className="window-dot dot-orange"></span>
-            <span className="title-text"> UNLOCK_FAREWELL.exe</span>
-          </div>
-        </div>
+        <header className="door-hero card-fade-in reveal-item in-view">
+          <p className="door-eyebrow">Autumn Note</p>
+          <h1>Open the little cottage door</h1>
+          <AnimatedUnderline className="hero-underline" />
+          <p className="door-intro">
+            A quiet thank-you space is waiting inside, with handwritten notes and warm memories.
+          </p>
+        </header>
 
-        {/* Door Section */}
-        <div className="door-section">
-          <div className="door-outer-frame">
-            {/* Left Frame Casing */}
-            <div className="frame-casing frame-left">
-              <div className="frame-panel"></div>
+        <section className="door-section card-fade-in reveal-item in-view">
+          <div className="box-vine top-left" />
+          <div className="box-vine top-right" />
+          <div className="door-greenery left" />
+          <div className="door-stage">
+            <div className={`leaf-burst ${showBurst ? 'active' : ''}`} aria-hidden="true">
+              {Array.from({ length: 16 }).map((_, index) => {
+                const angle = ((index + 1) / 16) * Math.PI * 2
+                const x = Math.cos(angle) * 170
+                const y = Math.sin(angle) * 130
+                return (
+                  <span
+                    key={index}
+                    className="burst-leaf"
+                    style={{
+                      '--burst-i': index,
+                      '--burst-x': `${x}px`,
+                      '--burst-y': `${y}px`
+                    }}
+                  />
+                )
+              })}
             </div>
-
-            {/* Top Frame Casing */}
-            <div className="frame-casing frame-top">
-              <div className="frame-panel"></div>
+            <div className={`door-backdrop ${isOpen ? 'visible' : ''}`}>
+              <div className="door-rays" />
+              <div className="backdrop-glow" />
+              <p>Welcome in</p>
             </div>
-
-            {/* Right Frame Casing */}
-            <div className="frame-casing frame-right">
-              <div className="frame-panel"></div>
-            </div>
-
-            {/* Main Door */}
-            <div className="door-frame">
-              <div className={`door ${isOpen ? 'open' : ''}`}>
-                {/* Door Left Half */}
-                <div className="door-left">
-                  <div className="door-panel-container">
-                    {/* Top Raised Panel */}
-                    <div className="door-panel door-panel-top">
-                      <div className="panel-inner"></div>
-                      <div className="panel-glow"></div>
-                    </div>
-                    {/* Middle Raised Panel */}
-                    <div className="door-panel door-panel-middle">
-                      <div className="panel-inner"></div>
-                      <div className="panel-glow"></div>
-                    </div>
-                    {/* Bottom Raised Panel */}
-                    <div className="door-panel door-panel-bottom">
-                      <div className="panel-inner"></div>
-                      <div className="panel-glow"></div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Door Right Half */}
-                <div className="door-right">
-                  <div className="door-panel-container">
-                    {/* Top Raised Panel */}
-                    <div className="door-panel door-panel-top">
-                      <div className="panel-inner"></div>
-                      <div className="panel-glow"></div>
-                    </div>
-                    {/* Middle Raised Panel */}
-                    <div className="door-panel door-panel-middle">
-                      <div className="panel-inner"></div>
-                      <div className="panel-glow"></div>
-                    </div>
-                    {/* Bottom Raised Panel */}
-                    <div className="door-panel door-panel-bottom">
-                      <div className="panel-inner"></div>
-                      <div className="panel-glow"></div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hinges on Left Side */}
-                <div className="hinge hinge-top"></div>
-                <div className="hinge hinge-middle"></div>
-                <div className="hinge hinge-bottom"></div>
-
-                {/* Door Handle/Knob */}
-                <div className="door-knob-assembly">
-                  <div className="door-knob">
-                    <div className="knob-inner"></div>
-                  </div>
-                  <div className="keyhole"></div>
-                </div>
-
-                {/* Door Light Glow */}
-                <div className="door-light"></div>
+            <div className={`cottage-door ${isOpen ? 'open' : ''}`}>
+              <div className="door-inner-glow" />
+              <MonogramBadge />
+              <div className="door-plaque">Residence Life</div>
+              <div className="door-planks">
+                <div className="door-plank" />
+                <div className="door-plank" />
+                <div className="door-plank" />
               </div>
+              <div className="door-bars">
+                <span />
+                <span />
+              </div>
+              <div className="door-knob" />
+              <div className="door-sparkle one" />
+              <div className="door-sparkle two" />
             </div>
-
-            {/* Door Bottom Threshold */}
-            <div className="door-threshold"></div>
           </div>
-        </div>
+          <div className="door-greenery right" />
+        </section>
+        <SignpostDivider />
+        <VineDivider />
 
-        {/* Question Box */}
-        <div className="question-container">
-          <div className="question-label"> QUESTION:</div>
-          <h2 className="question-text">{currentQuestion.question}</h2>
+        <section className="question-container card-fade-in reveal-item in-view">
+          <HandDrawnBorder className="quiz-border" />
+          <ArchedFrame>
+            <div className="question-content">
+              <p className="question-label">A small question</p>
+              <div className="quiz-progress-wrap" aria-hidden="true">
+                <p className="quiz-progress-text">
+                  Question {currentIndex + 1} of {totalQuestions}
+                </p>
+                <div className="quiz-progress-track">
+                  <span className="quiz-progress-fill" style={{ width: `${progressPercent}%` }} />
+                </div>
+              </div>
+              <h2 className="question-text">{currentQuestion.question}</h2>
 
-          <form onSubmit={handleSubmit} className="input-form">
-            <div className="input-group">
-              <span className="input-prefix"></span>
-              <input
-                type="text"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                placeholder="ENTER_ANSWER..."
-                className={`terminal-input ${showError ? 'error' : ''}`}
-                disabled={isOpen}
-                autoFocus
-              />
+              <form onSubmit={handleSubmit} className="input-form">
+                <label htmlFor="answerInput" className="visually-hidden">
+                  Your answer
+                </label>
+                <input
+                  id="answerInput"
+                  type="text"
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  placeholder="Type your answer"
+                  className={`answer-input ${showError ? 'error' : ''}`}
+                  disabled={isOpen}
+                  autoFocus
+                />
+
+                <button type="submit" className="unlock-button wax-seal-btn petal-burst-btn" disabled={isOpen}>
+                  {isOpen ? 'Opening...' : currentIndex === totalQuestions - 1 ? 'Unlock the door' : 'Next question'}
+                </button>
+              </form>
+
+              {showError && (
+                <div className="status-box status-error" role="status" aria-live="polite">
+                  <p>Not quite. Hint: {currentQuestion.hint}</p>
+                </div>
+              )}
+
+              {isOpen && (
+                <div className="status-box status-success" role="status" aria-live="polite">
+                  <p>Perfect. Stepping into the thank-you page...</p>
+                </div>
+              )}
             </div>
-
-            <button 
-              type="submit" 
-              className="unlock-button"
-              disabled={isOpen}
-            >
-              <span className="button-text">▶ UNLOCK DOOR</span>
+            <button type="button" className="skip-quiz-button wax-seal-btn petal-burst-btn" onClick={handleSkipQuiz} disabled={isOpen}>
+              Skip quiz
             </button>
-          </form>
-
-          {showError && (
-            <div className="error-box">
-              <span className="error-prefix"> ERROR:</span>
-              <p className="error-message">NOT_QUITE_RIGHT | {currentQuestion.hint}</p>
-            </div>
-          )}
-
-          {isOpen && (
-            <div className="success-box">
-              <span className="success-prefix"> SUCCESS:</span>
-              <p className="success-message">DOOR_OPENING...</p>
-            </div>
-          )}
-        </div>
+          </ArchedFrame>
+        </section>
       </div>
-
-      {/* Perspective Grid Background */}
-      <div className="perspective-grid"></div>
     </div>
-  );
+  )
 }
