@@ -51,9 +51,62 @@
 }
 
 .note-card {
+  position: relative;
+  --note-tilt: 0deg;
   transition: transform 0.34s ease, box-shadow 0.34s ease;
-  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform:
+    perspective(900px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg))
+    rotateZ(var(--note-tilt));
   transform-style: preserve-3d;
+}
+
+.note-card::before,
+.note-card::after {
+  content: '';
+  position: absolute;
+  top: -9px;
+  width: 54px;
+  height: 18px;
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(239, 225, 199, 0.88) 0 4px,
+      rgba(223, 208, 180, 0.84) 4px 8px
+    );
+  border: 1px solid rgba(106, 78, 66, 0.15);
+  box-shadow: 0 4px 8px rgba(106, 78, 66, 0.12);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.note-card::before {
+  left: 18px;
+  transform: rotate(-8deg);
+}
+
+.note-card::after {
+  right: 18px;
+  transform: rotate(8deg);
+}
+
+.note-card:nth-child(4n + 1) {
+  --note-tilt: -0.9deg;
+}
+
+.note-card:nth-child(4n + 2) {
+  --note-tilt: 0.75deg;
+}
+
+.note-card:nth-child(4n + 3) {
+  --note-tilt: -0.45deg;
+}
+
+.note-card:nth-child(4n + 4) {
+  --note-tilt: 0.55deg;
 }
 
 .note-arched-frame {
@@ -127,7 +180,15 @@
   color: rgba(73, 54, 47, 0.96);
   line-height: 1.86;
   letter-spacing: 0.01em;
-  background: rgba(255, 255, 255, 0.38);
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(122, 143, 107, 0.09) 0,
+      rgba(122, 143, 107, 0.09) 1px,
+      rgba(255, 255, 255, 0) 1px,
+      rgba(255, 255, 255, 0) 2.05rem
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(247, 240, 228, 0.5));
   border: 1px solid rgba(122, 143, 107, 0.14);
   border-radius: 12px;
   padding: 0.78rem 0.8rem;
@@ -228,7 +289,12 @@
 
 @media (hover: hover) {
   .note-card:hover {
-    transform: translateY(-4px);
+    transform:
+      translateY(-4px)
+      rotateZ(var(--note-tilt))
+      perspective(900px)
+      rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg));
     box-shadow: var(--shadow-hover);
   }
 }
@@ -246,6 +312,13 @@
   .back-to-door-btn {
     width: 100%;
   }
+
+  .note-card::before,
+  .note-card::after {
+    width: 44px;
+    height: 14px;
+    top: -7px;
+  }
 }
 
 @keyframes stamp-pop {
@@ -258,3 +331,6 @@
     transform: scale(1) rotate(0deg);
   }
 }
+
+
+

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Libre+Baskerville:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Lora:wght@400;500;600&display=swap');
 
 :root {
   --sage: #7a8f6b;
@@ -41,7 +41,7 @@ body,
 }
 
 body {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Lora', serif;
   color: var(--ink-soft);
   line-height: 1.6;
   overflow-x: hidden;
@@ -90,7 +90,7 @@ h6 {
 p,
 button,
 input {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Lora', serif;
 }
 
 button {
@@ -209,9 +209,11 @@ button {
   z-index: 3;
   pointer-events: none;
   transform: translate(
-    calc(var(--parallax-x) * 14px),
-    calc(var(--parallax-y) * 12px + var(--parallax-scroll) * -8px)
+    calc(var(--parallax-x) * 14px + var(--botanical-shift-x, 0px)),
+    calc(var(--parallax-y) * 12px + var(--parallax-scroll) * -8px + var(--botanical-shift-y, 0px))
   );
+  filter: blur(var(--botanical-blur, 0px)) drop-shadow(0 8px 14px rgba(106, 78, 66, 0.12));
+  animation: floral-breathe var(--botanical-duration, 8s) ease-in-out infinite;
 }
 
 .ivy-frame {
@@ -221,26 +223,48 @@ button {
   opacity: 0.54;
   z-index: 3;
   pointer-events: none;
+  transform: translate(
+    calc(var(--parallax-x) * -12px + var(--ivy-shift-x, 0px)),
+    calc(var(--parallax-y) * 10px + var(--parallax-scroll) * -7px + var(--ivy-shift-y, 0px))
+  );
+  filter: drop-shadow(0 7px 12px rgba(106, 78, 66, 0.13)) blur(var(--ivy-blur, 0px));
+  animation: floral-breathe var(--ivy-duration, 11s) ease-in-out infinite;
 }
 
 .ivy-frame-tl {
   top: 0.8rem;
   left: 0.6rem;
+  --ivy-shift-x: -3px;
+  --ivy-shift-y: -2px;
+  --ivy-duration: 10.5s;
+  opacity: 0.62;
 }
 
 .ivy-frame-br {
   right: 0.6rem;
   bottom: 0.8rem;
+  --ivy-shift-x: 3px;
+  --ivy-shift-y: 2px;
+  --ivy-blur: 0.2px;
+  --ivy-duration: 12s;
+  opacity: 0.48;
 }
 
 .corner-top-left {
   top: 1.2rem;
   left: 1rem;
+  --botanical-shift-x: -4px;
+  --botanical-shift-y: -2px;
+  --botanical-duration: 8.4s;
 }
 
 .corner-bottom-right {
   right: 1rem;
   bottom: 1.2rem;
+  --botanical-shift-x: 4px;
+  --botanical-shift-y: 2px;
+  --botanical-blur: 0.25px;
+  --botanical-duration: 9.5s;
 }
 
 .wildflower-sprig {
@@ -656,6 +680,16 @@ button {
   50% {
     transform: translateY(-2px);
     opacity: 0.72;
+  }
+}
+
+@keyframes floral-breathe {
+  0%,
+  100% {
+    opacity: 0.58;
+  }
+  50% {
+    opacity: 0.74;
   }
 }
 

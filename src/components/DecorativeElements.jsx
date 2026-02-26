@@ -384,7 +384,7 @@ export function MouseVineTrail() {
 
     const handleMove = (event) => {
       const now = Date.now()
-      if (now - lastTime < 42) return
+      if (now - lastTime < 95) return
       lastTime = now
 
       id += 1
@@ -397,14 +397,14 @@ export function MouseVineTrail() {
         type: Math.random() > 0.45 ? 'maple' : 'oak'
       }
 
-      setTrail((prev) => [...prev.slice(-44), item])
+      setTrail((prev) => [...prev.slice(-16), item])
     }
 
     window.addEventListener('mousemove', handleMove, { passive: true })
 
     cleanupTimer = setInterval(() => {
       setTrail((prev) => prev.slice(1))
-    }, 170)
+    }, 140)
 
     return () => {
       window.removeEventListener('mousemove', handleMove)
@@ -479,7 +479,7 @@ export function FirstLoadIntro() {
   return (
     <div className="first-load-intro" aria-hidden="true">
       <div className="intro-leaf-cluster" />
-      <p>Autumn Memories</p>
+      <p>Tim's Website</p>
     </div>
   )
 }
@@ -514,3 +514,4 @@ export function ArchedFrame({ children, className = '' }) {
     </div>
   )
 }
+

@@ -23,37 +23,93 @@ import {
 } from './DecorativeElements'
 import '../styles/Door.css'
 
-const RA_NAMES = [
-  'Zach',
-  'Gavin',
-  'Jaylin',
-  'Adam',
-  'Nia',
-  'David',
-  'Jes',
-  'Peyton',
-  'Mbah',
-  'Daniel',
-  'Nari',
-  'Tommy',
-  'Sanjay',
-  'Julian',
-  'AJ'
+const QUESTIONS = [
+  {
+    question: "Who is the RA that's been trying to get on your staff for 3 years",
+    correctAnswers: ['zach'],
+    hint: 'Z'
+  },
+  {
+    question: 'Who is your favorite PPSA member',
+    correctAnswers: ['gavin'],
+    hint: 'G'
+  },
+  {
+    question: 'Who has been at KSU longer than Tim?',
+    correctAnswers: ['jaylin'],
+    hint: 'J'
+  },
+  {
+    question: 'Who has those sweet baby blue eyes that make you fall in love?',
+    correctAnswers: ['adam'],
+    hint: 'A'
+  },
+  {
+    question: 'Who is short',
+    correctAnswers: ['nia'],
+    hint: 'N'
+  },
+  {
+    question: 'Who says "thank you kindly."',
+    correctAnswers: ['david'],
+    hint: 'D'
+  },
+  {
+    question: 'Who is your CHEESIEST RA',
+    correctAnswers: ['jes'],
+    hint: 'J'
+  },
+  {
+    question: 'Who says the james charles "hello"',
+    correctAnswers: ['peyton'],
+    hint: 'P'
+  },
+  {
+    question: 'Who is Tichuck',
+    correctAnswers: ['mbah', 'tichuck'],
+    hint: 'M'
+  },
+  {
+    question: 'Who is your favorite Mexican RA',
+    correctAnswers: ['daniel'],
+    hint: 'D'
+  },
+  {
+    question: "Who's the RA that worries about his future too much instead of today?",
+    correctAnswers: ['nari'],
+    hint: 'N'
+  },
+  {
+    question: 'Which RA calls Tim Supple?',
+    correctAnswers: ['tommy'],
+    hint: 'T'
+  },
+  {
+    question: 'Who mogs?',
+    correctAnswers: ['sanjay'],
+    hint: 'S'
+  },
+  {
+    question: "Who brought up Tim's car air filter, which was malfunctioning, and said it smells like weed",
+    correctAnswers: ['julian'],
+    hint: 'J'
+  },
+  {
+    question: 'Who tells Tim to stop ducking the Roblox sesh when we both know he is the reason it never happens',
+    correctAnswers: ['aj'],
+    hint: 'A'
+  },
+  {
+    question: 'Who got fired',
+    correctAnswers: ['mike'],
+    hint: 'M'
+  },
+  {
+    question: 'Who is the goat of howlumns',
+    correctAnswers: ['tim', 'timothy', 'tim turner'],
+    hint: 'T'
+  }
 ]
-
-const SAMPLE_QUIZ_QUESTIONS = RA_NAMES.map((name, index) => ({
-  question: `Sample inside-joke Q${index + 1}: Which RA is this question about?`,
-  correctAnswers: [name.toLowerCase()],
-  hint: `Sample placeholder for ${name}'s inside joke.`
-}))
-
-const FINAL_QUESTION = {
-  question: "Final question: Who's the GOAT of Howlumns?",
-  correctAnswers: ['tim'],
-  hint: "Starts with T."
-}
-
-const QUESTIONS = [...SAMPLE_QUIZ_QUESTIONS, FINAL_QUESTION]
 
 export default function Door({ onCorrectAnswer }) {
   const [answer, setAnswer] = useState('')
@@ -126,12 +182,13 @@ export default function Door({ onCorrectAnswer }) {
 
       <div className="door-wrapper">
         <header className="door-hero card-fade-in reveal-item in-view">
-          <p className="door-eyebrow">Autumn Note</p>
+          <p className="door-eyebrow">Tim's Website</p>
           <h1>Open the little cottage door</h1>
           <AnimatedUnderline className="hero-underline" />
           <p className="door-intro">
-            A quiet thank-you space is waiting inside, with handwritten notes and warm memories.
+            A surprise is waiting for you, but to open the door you must solve all the questions.
           </p>
+          <p className="door-ambient-note">Gathered by lantern light and a little bit of magic.</p>
         </header>
 
         <section className="door-section card-fade-in reveal-item in-view">
@@ -241,3 +298,4 @@ export default function Door({ onCorrectAnswer }) {
     </div>
   )
 }
+

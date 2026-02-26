@@ -61,11 +61,11 @@ export default function ThanksPage({ onGoBack }) {
     },
     {
       name: 'Daniel',
-      message: 'Great working with you, Tim. Excited to see everything you build next.'
+      message: 'Tim, I am glad that I was chosen to be an RA in Howell this year and that I got to work under an amazing CC. Because of your support and help I was an able to grow not only as an RA but as a person. Thank you for all the support and help you have given me this semester, especially during my treatment. I know that you will do great at your new job. Daniel'
     },
     {
       name: 'Nari',
-      message: 'You made work feel meaningful. Thank you for investing in all of us.'
+      message: 'Hey tim, I am so greatful to have experienced your leadership. You have taught me so much through so much patience that many wouldn’t have for me. though youre moving to your next step, dont forget the impact you have left on all of your p[as staff. Good luck soilder!!'
     },
     {
       name: 'Tommy',
@@ -73,7 +73,7 @@ export default function ThanksPage({ onGoBack }) {
     },
     {
       name: 'Sanjay',
-      message: 'Best of luck in your new role. You have been an excellent leader and mentor. Best of luck in your new role. You have been an excellent leader and mentor. Best of luck in your new role. You have been an excellent leader and mentor. Best of luck in your new role. You have been an excellent leader and mentor.'
+      message: 'Tim, the website name is accurate. I made this for you genuinely because you are the goat. Tim maaaan you have helped me with so much stuff, you got me though my whole situation ship 😭. And im fully healed now yay!! (Now lets talk about your situation with big H from KES lollll jkjk) But in all seriousness, there was stuff I could not tell to any of the people ik and you being there helped a lotttt. And man tim you are such a helpful person to not just me but to everyone involved in housing. Man I have so much stuff to say but I dont know if I can fit it all and I dont want to ramble 😭😭, but seriously you have a super power in talking to people and understanding them. Ik you will do super amazing in your new job I am 100% sure. I will really miss you tim, you have impacted my life and so many others in ways you cant even think of! Gooooaaaatttt'
     },
     {
       name: 'Julian',
@@ -85,11 +85,15 @@ export default function ThanksPage({ onGoBack }) {
     },
     {
       name: 'Aidan',
-      message: 'Thank you for supporting the team so well. I hope this next chapter treats you well.'
+      message: 'Tim, it was an honor working for you. You have been the most fun boss I could’ve had. I loved playing pickleball in our free time and running 5k’s together. The qt slushie runs are a classic, and your cookies and protein ice cream were a pretty awesome snack. Thanks for making this job less of a job and more of a family. I hope we still keep in touch across campuses either in the gaming server or playing pickleball. Thanks for all that you’ve done for howlumns and each RA that’s worked for you, you really have left an impact in our lives. Can I bring Timmy T to the picnic? No 😢 Well all miss you Tim!! -Aidan'
     },
     {
       name: 'Damian',
       message: 'Tim you were a great CC, and I’m happy to be seeing you move up in the ranks and I hope that your future is bright'
+    },
+    {
+      name: 'Eli',
+      message: 'Tim was probably the most fun CC I had the pleasure of working with. He was always kind and knew how to make the job enjoyable. Whether it was “therapy” sessions on Devin’s couch or coining the phrase “snappy cazh,” he brought so much energy to the housing office. I wish him all the best in his next endeavor; I know he’s going to light up his next workplace.'
     },
     {
       name: 'Lily Desta',
@@ -101,11 +105,11 @@ export default function ThanksPage({ onGoBack }) {
     },
     {
       name: 'Jordan',
-      message: 'You have made a lasting impact on us. Wishing you confidence and calm in the new role.'
+      message: '“Tim you’ve been the best boss to so many people, I’m glad I’ve gotten to see you grow and hope you continue to spread your contagious comfortability everywhere you go”'
     },
     {
       name: 'Mark',
-      message: 'Thanks, Tim. Wishing you a smooth transition and a lot of success.'
+      message: 'Tim is tuffilicious.'
     },
     {
       name: 'Nathan',
@@ -113,11 +117,15 @@ export default function ThanksPage({ onGoBack }) {
     },
     {
       name: 'Hannah',
-      message: 'You made the team stronger and kinder. Grateful for the chance to work with you.'
+      message: 'Hey Tim! I don’t even know where to start but just by stating how much love and care I have for you. I genuinely think we are the funniest people in the room if we are together! And even though you are such a big part of my RA/housing journey, you are even a bigger part of my personal life as you have been there in ways I can’t even begin to describe. I know with this role, you are going to be suchhhhh a busy woman but remember to stay loving life and to never change because you are rockstar :) Love Hannah'
     },
     {
       name: 'Kenzie',
       message: 'Thanks for all the guidance and trust. I know you will do great things ahead.'
+    },
+    {
+      name: 'Jared',
+      message: 'TIMMMMM. Hate to see you go but glad to see you moving up lol. But genuinely Tim, you have set the standard for what a good supervisor, mentor, and friend should look like in my life. When I sometimes lacked the confidence you’ve inspired and encouraged me to pursue opportunities and challenge myself to reach new heights. You’ve contributed a great amount to my growth as an RA, professional, and as a person. And I appreciate you for all of these things and more. I pray nothing but the best for you and that you receive continual blessings from this point on. Thank you and we love ya Tim 😛'
     },
     {
       name: 'Alexis',
@@ -126,6 +134,10 @@ export default function ThanksPage({ onGoBack }) {
     {
       name: 'Erick',
       message: 'Hey Tim, I want to say being on your staff was a great way to enter residence and housing life and I feel like I really grew into a better person having a leader who is kind and considerate of the people following him. I look forward to the day you reach your goal of Dean and want you to know your efforts and actions have not gone unappreciated, your a great person and deserves the best🙏❤️!!'
+    },
+    {
+      name: 'Thomas Chavajay',
+      message: 'To this day tim has been the most genuine leader i’ve ever had the opportunity to serve under, the way tim leads with a servants heart continues to inspire me to one day become a leader like he is. the chillest nicest and hardest working CC and the bestest friend - ex RA thomas'
     },
     {
       name: 'Jazmin',
@@ -137,13 +149,18 @@ export default function ThanksPage({ onGoBack }) {
     },
     {
       name: 'Tre',
-      message: 'You will be remembered with a lot of respect. Wishing you a bright path forward.'
+      message: 'Tim! I’m really excited for you as you transition into this new role. Over the past three years, I’ve had the opportunity to watch you grow into the professional you are today. When you first started, you were a little bashful but genuinely excited to connect with students and learn the work. What I appreciate most is that that same excitement never left, even through football initiatives, new expectations, and a lot of staff transition. Last year especially, you did a lot to be proud of. After RELI, you came back focused and ready, and you didn’t just elevate your own community; you pushed yourself professionally in ways that encouraged others across our department to think bigger about our impact in the region. You’ve brought a calm, mature presence to the team while still being relatable and fun. That balance isn’t easy in an entry-level role that can be as demanding as this one. I’m proud of the CC you’ve become, and I’m looking forward to seeing how you continue to grow and lead as RSSM.'
+    },
+    {
+      name: 'Darmon',
+      message: 'Tim, what made you a unique CC was the fact that you did not just take your job seriously, but you also built up your staff with you as you moved upward. I was an RA for three years at KSU, and I constantly had to deal with performative people, attitudes, and activities that only served to glorify a system that did not truly appreciate the people that held it up. You were never afraid to work around and modify the system in place in order to respect the energy and time of your staff while teaching the skills needed for an RA’s future. I have so many memories of you supporting my journey, from helping me get accepted to Auburn to giving me dating advice. I hope your upward momentum does not stop here and you keep rising and changing things for the better! Sincerely, The God of Ants aka Darmon'
     },
     {
       name: 'Josh Burns',
       message: 'Tim, I want to wish you a huge congratulations on your new position in HRL! I am one of many who are proud and excited to see what you do for the KSU housing community. I am grateful to have you as a colleague and friend. Sending you all the best, and just know I am here for you. Best, Josh Burns'
     }
   ]
+  const sortedNotes = [...notes].sort((a, b) => b.message.length - a.message.length)
 
   return (
     <div className="thanks-page">
@@ -174,7 +191,7 @@ export default function ThanksPage({ onGoBack }) {
       <VineDivider />
 
       <main className="thanks-notes-container">
-        {notes.map((note, index) => (
+        {sortedNotes.map((note, index) => (
           <article key={`${note.name}-${index}`} className="note-card card-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
             <ArchedFrame className="note-arched-frame">
               <div className="note-inner">
